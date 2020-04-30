@@ -1,20 +1,24 @@
 package com.bridgelabz.model;
 
+import java.security.PrivateKey;
+
 public class PersonInformation {
     private String firstName;
     private String lastName;
-    private String state;
-    private long zip;
+    private String address;
     private String city;
-    private long phoneNumber;
+    private String state;
+    private String zip;
+    private String phoneNumber;
 
     public PersonInformation() {
-
     }
 
-    public PersonInformation(String firstName, String lastName, String city, String state, long zip, long phoneNumber) {
+    public PersonInformation(String firstName, String lastName, String address,
+                             String state, String city, String zip, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
         this.city = city;
         this.state = state;
         this.zip = zip;
@@ -37,6 +41,14 @@ public class PersonInformation {
         this.lastName = lastName;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getCity() {
         return city;
     }
@@ -53,31 +65,32 @@ public class PersonInformation {
         this.state = state;
     }
 
-    public long getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(long zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
         return "PersonInformation{" +
-                "state='" + state + '\'' +
-                ", zip=" + zip +
-                ", city='" + city + '\'' +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
