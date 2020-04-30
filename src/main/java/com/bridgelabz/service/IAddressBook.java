@@ -9,5 +9,5 @@ public interface IAddressBook {
 
     public void deletePersonData(String filePath, String uniqueData);
 
-    public void sortPersonData(String filePath);
+    public void sortPersonDataByFirstName(String filePath);
 }

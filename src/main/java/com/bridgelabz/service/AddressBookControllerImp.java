@@ -76,10 +76,20 @@ public class AddressBookControllerImp implements IAddressBook {
     }
 
     @Override
-    public void sortPersonData(String filePath) {
+    public void sortPersonDataByFirstName(String filePath) {
         try {
             ArrayList<PersonInformation> data = readFileData(filePath);
             data.sort(Comparator.comparing(PersonInformation::getFirstName));
+            writeFileData(data, filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sortPersonDataByZipCode(String filePath) {
+        try {
+            ArrayList<PersonInformation> data = readFileData(filePath);
+            data.sort(Comparator.comparing(PersonInformation::getZip));
             writeFileData(data, filePath);
         } catch (IOException e) {
             e.printStackTrace();
