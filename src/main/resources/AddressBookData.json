@@ -1,5 +1,23 @@
 [
   {
+    "firstName": "Manas",
+    "lastName": "Parihar",
+    "address": "Indrapuri",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "zip": "632311",
+    "phoneNumber": "7134329292"
+  },
+  {
+    "firstName": "Himanshu",
+    "lastName": "Baghel",
+    "address": "MP Nagar",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "zip": "741001",
+    "phoneNumber": "7134329292"
+  },
+  {
     "firstName": "Aayush",
     "lastName": "sahu",
     "address": "BTM 2nd stage",
@@ -33,6 +51,15 @@
     "city": "Karnataka",
     "state": "Bangalore",
     "zip": "746061",
+    "phoneNumber": "7134329292"
+  },
+  {
+    "firstName": "Abhishek",
+    "lastName": "Baghel",
+    "address": "Vijay Nagar",
+    "city": "Indore",
+    "state": "Madhya Pradesh",
+    "zip": "899091",
     "phoneNumber": "7134329292"
   }
 ]
