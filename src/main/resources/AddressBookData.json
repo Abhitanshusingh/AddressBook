@@ -1,10 +1,20 @@
 [
   {
-    "firstName": "Abhitanshu",
+    "firstName": "Laksh",
+    "lastName": "Mehta",
+    "address": "BTM 2nd stage",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "746061",
+    "phoneNumber": "7134329292"
+  },
+  {
+    "firstName": "Shubham",
     "lastName": "Baghel",
-    "state": "Madhya Pradesh",
-    "zip": 484110,
-    "city": "Shahdol",
-    "phoneNumber": 7000458100
+    "address": "IIT nagar",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "7147100",
+    "phoneNumber": "7939492912"
   }
 ]
