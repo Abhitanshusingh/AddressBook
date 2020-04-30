@@ -33,11 +33,13 @@ public class AddressBookControllerImp implements IAddressBook {
     }
 
     @Override
-    public void updatePersonData(PersonInformation personInformation, String filePath, String uniqueData) {
+    public int updatePersonData(PersonInformation personInformation, String filePath, String uniqueData) {
+        int indexNumber = 0;
         try {
             ArrayList<PersonInformation> data = readFileData(filePath);
             for (PersonInformation personData : data) {
                 if (personData.getPhoneNumber().equals(uniqueData)) {
+                    indexNumber = data.indexOf(personData);
                     personData.setFirstName(personInformation.getFirstName());
                     personData.setLastName(personInformation.getLastName());
                     personData.setAddress(personInformation.getAddress());
@@ -51,5 +53,20 @@ public class AddressBookControllerImp implements IAddressBook {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return indexNumber;
+    }
+
+    @Override
+    public void deletePersonData(PersonInformation personInformation, String filePath,String uniqueData) throws IOException {
+        ArrayList<PersonInformation> data = readFileData(filePath);
+        PersonInformation removedata = null;
+            for(PersonInformation personData : data){
+                if (personData.getPhoneNumber().equals(uniqueData)){
+                    removedata = personData;
+                    break;
+                }
+            }
+            data.remove(removedata);
+            writeFileData(data,filePath);
     }
 }
