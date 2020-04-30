@@ -6,6 +6,7 @@ import org.codehaus.jackson.type.TypeReference;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class AddressBookControllerImp implements IAddressBook {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -57,16 +58,31 @@ public class AddressBookControllerImp implements IAddressBook {
     }
 
     @Override
-    public void deletePersonData(PersonInformation personInformation, String filePath,String uniqueData) throws IOException {
-        ArrayList<PersonInformation> data = readFileData(filePath);
-        PersonInformation removedata = null;
-            for(PersonInformation personData : data){
-                if (personData.getPhoneNumber().equals(uniqueData)){
+    public void deletePersonData(String filePath, String uniqueData) {
+        try {
+            ArrayList<PersonInformation> data = readFileData(filePath);
+            PersonInformation removedata = null;
+            for (PersonInformation personData : data) {
+                if (personData.getPhoneNumber().equals(uniqueData)) {
                     removedata = personData;
                     break;
                 }
             }
             data.remove(removedata);
-            writeFileData(data,filePath);
+            writeFileData(data, filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sortPersonData(String filePath) {
+        try {
+            ArrayList<PersonInformation> data = readFileData(filePath);
+            data.sort(Comparator.comparing(PersonInformation::getFirstName));
+            writeFileData(data, filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
