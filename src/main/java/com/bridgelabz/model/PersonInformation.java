@@ -37,7 +37,6 @@ public class PersonInformation {
         this.lastName = lastName;
     }
 
-
     public String getCity() {
         return city;
     }
