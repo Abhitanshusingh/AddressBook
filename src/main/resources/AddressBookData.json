@@ -1,7 +1,34 @@
 [
   {
+    "firstName": "Aayush",
+    "lastName": "sahu",
+    "address": "BTM 2nd stage",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "746061",
+    "phoneNumber": "7134329292"
+  },
+  {
+    "firstName": "Bhanu",
+    "lastName": "Baba",
+    "address": "BTM 2nd stage",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "746061",
+    "phoneNumber": "7134329292"
+  },
+  {
     "firstName": "Laksh",
     "lastName": "Mehta",
+    "address": "BTM 2nd stage",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "746061",
+    "phoneNumber": "7134329292"
+  },
+  {
+    "firstName": "Modi",
+    "lastName": "Bali",
     "address": "BTM 2nd stage",
     "city": "Karnataka",
     "state": "Bangalore",
