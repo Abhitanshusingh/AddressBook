@@ -10,4 +10,6 @@ public interface IAddressBook {
     public void deletePersonData(String filePath, String uniqueData);
 
     public void sortPersonDataByFirstName(String filePath);
+
+    public boolean printPersonEntriesData(String filePath);
 }

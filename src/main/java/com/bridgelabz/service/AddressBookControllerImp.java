@@ -7,6 +7,7 @@ import org.codehaus.jackson.type.TypeReference;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 public class AddressBookControllerImp implements IAddressBook {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -94,5 +95,17 @@ public class AddressBookControllerImp implements IAddressBook {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean printPersonEntriesData(String filePath) {
+        try {
+            ArrayList<PersonInformation> data = readFileData(filePath);
+            data.forEach(print -> System.out.println(print));
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
