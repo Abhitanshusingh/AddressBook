@@ -103,4 +103,10 @@ public class AddressBookTest {
         Assert.assertEquals("632311", data.get(0).getZip());
         Assert.assertEquals("899091", data.get(data.size() - 1).getZip());
     }
+
+    @Test
+    public void givenPersonInformation_whenPrintEntriesData_shouldReturnTrue() {
+        boolean isPrinted = addressBookControllerImp.printPersonEntriesData(filePath);
+        Assert.assertTrue(isPrinted);
+    }
 }
