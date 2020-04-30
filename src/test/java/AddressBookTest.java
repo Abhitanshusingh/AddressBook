@@ -33,7 +33,7 @@ public class AddressBookTest {
             ArrayList<PersonInformation> data = objectMapper
                     .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                     });
-            Assert.assertEquals(personInformation.getPhoneNumber(), data.get(1).getPhoneNumber());
+            Assert.assertEquals(personInformation.getPhoneNumber(), data.get(data.size()-1).getPhoneNumber());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,14 +44,29 @@ public class AddressBookTest {
         try {
             String uniqueData = "7000458100";
             PersonInformation personInformation = new PersonInformation
-                    ("Laksh", "Mehta", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "9869757435");
-            addressBookControllerImp.updatePersonData(personInformation, filePath,uniqueData);
+                    ("Laksh", "Mehta", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
+            int indexNumber = addressBookControllerImp.updatePersonData(personInformation, filePath, uniqueData);
             ArrayList<PersonInformation> data = objectMapper
                     .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                     });
-            Assert.assertEquals(personInformation.getFirstName(), data.get(0).getFirstName());
+            Assert.assertEquals(personInformation.getFirstName(), data.get(indexNumber).getFirstName());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void givenPersonInformation_whenDeleteData_shouldRetunTrue() throws IOException {
+        String uniqueData = "7000458100";
+        ArrayList<PersonInformation> beforeDeletedData = objectMapper
+                .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                });
+        int beforeDeletedSize = beforeDeletedData.size() ;
+        addressBookControllerImp.deletePersonData(personInformation, filePath, uniqueData);
+        ArrayList<PersonInformation> afterDeletedData = objectMapper
+                .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                });
+        int afterDeletedSize = afterDeletedData.size() +1 ;
+        Assert.assertEquals(beforeDeletedSize,afterDeletedSize);
     }
 }
