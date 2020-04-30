@@ -16,23 +16,40 @@ public class AddressBookTest {
     ObjectMapper objectMapper;
     PersonInformation personInformation;
     private static final String filePath = "./src/main/resources/AddressBookData.json";
+
     @Before
-    public void SetUp(){
+    public void SetUp() {
         addressBookControllerImp = new AddressBookControllerImp();
         objectMapper = new ObjectMapper();
         personInformation = new PersonInformation();
     }
 
     @Test
-    public void givenPersonalInformation_whenStoreInFile_shouldReturnTrue(){
+    public void givenPersonalInformation_whenStoreInFile_shouldReturnTrue() {
         try {
             PersonInformation personInformation = new PersonInformation
-                    ("Abhitanshu","Baghel","Shahdol","Madhya Pradesh",484110L,7000458100L);
-            addressBookControllerImp.addPersonInformation(personInformation,filePath);
-            ArrayList<PersonInformation> data = objectMapper.readValue
-                    (new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
-            });
+                    ("Abhitanshu", "Baghel", "TT nagar", "Shahdol", "Madhya Pradesh", "484110", "7000458100");
+            addressBookControllerImp.addPersonInformation(personInformation, filePath);
+            ArrayList<PersonInformation> data = objectMapper
+                    .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                    });
             Assert.assertEquals(personInformation.getPhoneNumber(), data.get(1).getPhoneNumber());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenPersonalInformation_whenUpdateData_shouldReturnTrue() {
+        try {
+            String uniqueData = "7000458100";
+            PersonInformation personInformation = new PersonInformation
+                    ("Laksh", "Mehta", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "9869757435");
+            addressBookControllerImp.updatePersonData(personInformation, filePath,uniqueData);
+            ArrayList<PersonInformation> data = objectMapper
+                    .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                    });
+            Assert.assertEquals(personInformation.getFirstName(), data.get(0).getFirstName());
         } catch (IOException e) {
             e.printStackTrace();
         }
