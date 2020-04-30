@@ -69,20 +69,38 @@ public class AddressBookTest {
     }
 
     @Test
-    public void givenPersonInformation_whenSortedData_shouldReturnTrue() throws IOException {
+    public void givenPersonInformation_whenSortedDataByFirstName_shouldReturnTrue() throws IOException {
         PersonInformation personInformation1 = new PersonInformation("Bhanu", "Baba", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
-        PersonInformation personInformation2 = new PersonInformation("Modi", "Bali", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
-        PersonInformation personInformation3 = new PersonInformation("Aayush", "sahu", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
+        PersonInformation personInformation2 = new PersonInformation("Modi", "Bali", "BTM 1nd stage", "Bangalore", "Karnataka", "707121", "9494938403");
+        PersonInformation personInformation3 = new PersonInformation("Aayush", "sahu", "Jaya Nagar", "Bangalore", "Karnataka", "765051", "9394958568");
 
         addressBookControllerImp.addPersonInformation(personInformation1, filePath);
         addressBookControllerImp.addPersonInformation(personInformation2, filePath);
         addressBookControllerImp.addPersonInformation(personInformation3, filePath);
-        addressBookControllerImp.sortPersonData(filePath);
+        addressBookControllerImp.sortPersonDataByFirstName(filePath);
 
         ArrayList<PersonInformation> data = objectMapper
                 .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                 });
         Assert.assertEquals("Aayush", data.get(0).getFirstName());
         Assert.assertEquals("Modi", data.get(data.size() - 1).getFirstName());
+    }
+
+    @Test
+    public void givenPersonInformation_whenSortedDataByZipCode_shouldReturnTrue() throws IOException {
+        PersonInformation personInformation1 = new PersonInformation("Himanshu", "Baghel", "MP Nagar", "Madhya Pradesh", "Bhopal", "741001", "7134329292");
+        PersonInformation personInformation2 = new PersonInformation("Abhishek", "Baghel", "Vijay Nagar", "Madhya Pradesh", "Indore", "899091", "7134329292");
+        PersonInformation personInformation3 = new PersonInformation("Manas", "Parihar", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
+
+        addressBookControllerImp.addPersonInformation(personInformation1, filePath);
+        addressBookControllerImp.addPersonInformation(personInformation2, filePath);
+        addressBookControllerImp.addPersonInformation(personInformation3, filePath);
+        addressBookControllerImp.sortPersonDataByZipCode(filePath);
+
+        ArrayList<PersonInformation> data = objectMapper
+                .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                });
+        Assert.assertEquals("632311", data.get(0).getZip());
+        Assert.assertEquals("899091", data.get(data.size() - 1).getZip());
     }
 }
