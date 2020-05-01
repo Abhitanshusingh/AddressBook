@@ -11,7 +11,7 @@ public interface IAddressBook {
 
     public void deletePersonData(String filePath, String uniqueData);
 
-    public void sortPersonDataByFirstName(String filePath);
+    public void sortPersonDataByLastName(String filePath);
 
     public void sortPersonDataByZipCode(String filePath);
 

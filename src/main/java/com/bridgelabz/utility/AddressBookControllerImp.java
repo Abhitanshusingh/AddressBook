@@ -43,8 +43,6 @@ public class AddressBookControllerImp implements IAddressBook {
             for (PersonInformation personData : data) {
                 if (personData.getPhoneNumber().equals(uniqueData)) {
                     indexNumber = data.indexOf(personData);
-                    personData.setFirstName(personInformation.getFirstName());
-                    personData.setLastName(personInformation.getLastName());
                     personData.setAddress(personInformation.getAddress());
                     personData.setCity(personInformation.getCity());
                     personData.setState(personInformation.getState());
@@ -78,11 +76,15 @@ public class AddressBookControllerImp implements IAddressBook {
     }
 
     @Override
-    public void sortPersonDataByFirstName(String filePath) {
+    public void sortPersonDataByLastName(String filePath) {
         try {
             ArrayList<PersonInformation> data = readFileData(filePath);
-            data.sort(Comparator.comparing(PersonInformation::getFirstName));
+            data.sort(Comparator.comparing(PersonInformation::getLastName));
             writeFileData(data, filePath);
+            ArrayList<PersonInformation> sortedDataByLastName = readFileData(filePath);
+            if(sortedDataByLastName.get(0).getLastName().equals(sortedDataByLastName.get(1).getLastName()))
+                sortedDataByLastName.sort(Comparator.comparing(PersonInformation::getFirstName));
+            writeFileData(sortedDataByLastName, filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
