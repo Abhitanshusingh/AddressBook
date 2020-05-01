@@ -177,4 +177,19 @@ public class AddressBookTest {
         Assert.assertTrue(isSaveAs);
     }
 
+    @Test
+    public void givenAddressBook_whenExit() {
+        PersonInformation personInformation = new PersonInformation
+                ("Aman", "Singh", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
+        addressBookControllerImp.addPersonInformation(personInformation, filePath);
+        try {
+            ArrayList<PersonInformation> data = objectMapper.
+                    readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                    });
+            addressBookControllerImp.saveAddressBook(filePath, data);
+            addressBookControllerImp.quitAddressBook();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
