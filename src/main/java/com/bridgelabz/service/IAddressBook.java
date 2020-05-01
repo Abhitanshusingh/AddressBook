@@ -25,4 +25,5 @@ public interface IAddressBook {
 
     public boolean saveAsAddressBook(String filePath, PersonInformation personInformation);
 
+    public void quitAddressBook();
 }

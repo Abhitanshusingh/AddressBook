@@ -166,4 +166,10 @@ public class AddressBookControllerImp implements IAddressBook {
         }
         return false;
     }
+
+    @Override
+    public void quitAddressBook() {
+        System.out.println("Exit..");
+        System.exit(0);
+    }
 }
