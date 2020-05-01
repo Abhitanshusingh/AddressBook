@@ -2,6 +2,8 @@ package com.bridgelabz.service;
 
 import com.bridgelabz.model.PersonInformation;
 
+import java.util.ArrayList;
+
 public interface IAddressBook {
     public void addPersonInformation(PersonInformation personInformation, String filePath);
 
@@ -15,7 +17,9 @@ public interface IAddressBook {
 
     public boolean printPersonEntriesData(String filePath);
 
-    public boolean createNewAddressBook(String filepath, String addressBookName);
+    public boolean createNewAddressBook(String addressBookName);
 
-    public boolean openExistingAddressBook(String filepath, String addressBookName);
+    public boolean openExistingAddressBook(String addressBookName);
+
+    public boolean saveAddressBook(String filePath, ArrayList<PersonInformation> data);
 }
