@@ -28,7 +28,7 @@ public class AddressBookTest {
     public void givenPersonalInformation_whenStoreInFile_shouldReturnTrue() {
         try {
             PersonInformation personInformation = new PersonInformation
-                    ("Abhitanshu", "Baghel", "TT nagar", "Shahdol", "Madhya Pradesh", "484110", "7000458100");
+                    ("abhitanshu", "baghel", "TT nagar", "Shahdol", "Madhya Pradesh", "484110", "7000458100");
             addressBookControllerImp.addPersonInformation(personInformation, filePath);
             ArrayList<PersonInformation> data = objectMapper
                     .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
@@ -49,7 +49,7 @@ public class AddressBookTest {
             ArrayList<PersonInformation> data = objectMapper
                     .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                     });
-            Assert.assertEquals(personInformation.getFirstName(), data.get(indexNumber).getFirstName());
+            Assert.assertEquals(personInformation.getPhoneNumber(), data.get(indexNumber).getPhoneNumber());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,18 +71,41 @@ public class AddressBookTest {
     }
 
     @Test
-    public void givenPersonInformation_whenSortedDataByFirstName_shouldReturnTrue() throws IOException {
+    public void givenPersonInformation_whenSortedDataByLastName_shouldReturnTrue() throws IOException {
+        String filePath = "/home/abhitanshu/Desktop/Java/AddressBook/src/main/resources/SortDataByLastName.json";
         PersonInformation personInformation1 = new PersonInformation
-                ("Bhanu", "Baba", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
+                ("Bhanu", "Pratap", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
         PersonInformation personInformation2 = new PersonInformation
-                ("Modi", "Bali", "BTM 1nd stage", "Bangalore", "Karnataka", "707121", "9494938403");
+                ("Modi", "baba", "BTM 1nd stage", "Bangalore", "Karnataka", "707121", "9494938403");
         PersonInformation personInformation3 = new PersonInformation
                 ("Aayush", "sahu", "Jaya Nagar", "Bangalore", "Karnataka", "765051", "9394958568");
 
         addressBookControllerImp.addPersonInformation(personInformation1, filePath);
         addressBookControllerImp.addPersonInformation(personInformation2, filePath);
         addressBookControllerImp.addPersonInformation(personInformation3, filePath);
-        addressBookControllerImp.sortPersonDataByFirstName(filePath);
+        addressBookControllerImp.sortPersonDataByLastName(filePath);
+
+        ArrayList<PersonInformation> data = objectMapper
+                .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                });
+        Assert.assertEquals("Baba", data.get(0).getLastName());
+        Assert.assertEquals("Sahu", data.get(data.size() - 1).getLastName());
+    }
+
+    @Test
+    public void givenPersonInformation_whenSortedDataByFirstName_shouldReturnTrue() throws IOException {
+        String filePath = "/home/abhitanshu/Desktop/Java/AddressBook/src/main/resources/SortDataByFirstName.json";
+        PersonInformation personInformation1 = new PersonInformation
+                ("Bhanu", "Baba", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
+        PersonInformation personInformation2 = new PersonInformation
+                ("Modi", "baba", "BTM 1nd stage", "Bangalore", "Karnataka", "707121", "9494938403");
+        PersonInformation personInformation3 = new PersonInformation
+                ("Aayush", "sahu", "Jaya Nagar", "Bangalore", "Karnataka", "765051", "9394958568");
+
+        addressBookControllerImp.addPersonInformation(personInformation1, filePath);
+        addressBookControllerImp.addPersonInformation(personInformation2, filePath);
+        addressBookControllerImp.addPersonInformation(personInformation3, filePath);
+        addressBookControllerImp.sortPersonDataByLastName(filePath);
 
         ArrayList<PersonInformation> data = objectMapper
                 .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
@@ -179,10 +202,10 @@ public class AddressBookTest {
 
     @Test
     public void givenAddressBook_whenExit() {
-        PersonInformation personInformation = new PersonInformation
-                ("Aman", "Singh", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
-        addressBookControllerImp.addPersonInformation(personInformation, filePath);
         try {
+            PersonInformation personInformation = new PersonInformation
+                    ("Aman", "Singh", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
+            addressBookControllerImp.addPersonInformation(personInformation, filePath);
             ArrayList<PersonInformation> data = objectMapper.
                     readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                     });
