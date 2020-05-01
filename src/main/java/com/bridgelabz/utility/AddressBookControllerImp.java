@@ -152,4 +152,18 @@ public class AddressBookControllerImp implements IAddressBook {
         }
         return false;
     }
+
+    @Override
+    public boolean saveAsAddressBook(String filePath ,PersonInformation personInformation) {
+        try {
+            ArrayList<PersonInformation> data = readFileData(filePath);
+            if (data.isEmpty())
+                return false;
+            writeFileData(data, filePath);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

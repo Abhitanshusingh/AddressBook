@@ -22,4 +22,7 @@ public interface IAddressBook {
     public boolean openExistingAddressBook(String addressBookName);
 
     public boolean saveAddressBook(String filePath, ArrayList<PersonInformation> data);
+
+    public boolean saveAsAddressBook(String filePath, PersonInformation personInformation);
+
 }
