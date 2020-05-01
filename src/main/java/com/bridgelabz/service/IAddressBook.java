@@ -11,5 +11,9 @@ public interface IAddressBook {
 
     public void sortPersonDataByFirstName(String filePath);
 
+    public void sortPersonDataByZipCode(String filePath);
+
     public boolean printPersonEntriesData(String filePath);
+
+    public boolean createNewAddressBook(String filepath, String addressBookName);
 }
