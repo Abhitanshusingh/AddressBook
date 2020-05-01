@@ -27,7 +27,8 @@ public class AddressBookTest {
     @Test
     public void givenPersonalInformation_whenStoreInFile_shouldReturnTrue() {
         try {
-            PersonInformation personInformation = new PersonInformation("Abhitanshu", "Baghel", "TT nagar", "Shahdol", "Madhya Pradesh", "484110", "7000458100");
+            PersonInformation personInformation = new PersonInformation
+                    ("Abhitanshu", "Baghel", "TT nagar", "Shahdol", "Madhya Pradesh", "484110", "7000458100");
             addressBookControllerImp.addPersonInformation(personInformation, filePath);
             ArrayList<PersonInformation> data = objectMapper
                     .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
@@ -42,7 +43,8 @@ public class AddressBookTest {
     public void givenPersonalInformation_whenUpdateData_shouldReturnTrue() {
         try {
             String uniqueData = "7000458100";
-            PersonInformation personInformation = new PersonInformation("Laksh", "Mehta", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
+            PersonInformation personInformation = new PersonInformation
+                    ("Laksh", "Mehta", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
             int indexNumber = addressBookControllerImp.updatePersonData(personInformation, filePath, uniqueData);
             ArrayList<PersonInformation> data = objectMapper
                     .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
@@ -70,9 +72,12 @@ public class AddressBookTest {
 
     @Test
     public void givenPersonInformation_whenSortedDataByFirstName_shouldReturnTrue() throws IOException {
-        PersonInformation personInformation1 = new PersonInformation("Bhanu", "Baba", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
-        PersonInformation personInformation2 = new PersonInformation("Modi", "Bali", "BTM 1nd stage", "Bangalore", "Karnataka", "707121", "9494938403");
-        PersonInformation personInformation3 = new PersonInformation("Aayush", "sahu", "Jaya Nagar", "Bangalore", "Karnataka", "765051", "9394958568");
+        PersonInformation personInformation1 = new PersonInformation
+                ("Bhanu", "Baba", "BTM 2nd stage", "Bangalore", "Karnataka", "746061", "7134329292");
+        PersonInformation personInformation2 = new PersonInformation
+                ("Modi", "Bali", "BTM 1nd stage", "Bangalore", "Karnataka", "707121", "9494938403");
+        PersonInformation personInformation3 = new PersonInformation
+                ("Aayush", "sahu", "Jaya Nagar", "Bangalore", "Karnataka", "765051", "9394958568");
 
         addressBookControllerImp.addPersonInformation(personInformation1, filePath);
         addressBookControllerImp.addPersonInformation(personInformation2, filePath);
@@ -88,9 +93,12 @@ public class AddressBookTest {
 
     @Test
     public void givenPersonInformation_whenSortedDataByZipCode_shouldReturnTrue() throws IOException {
-        PersonInformation personInformation1 = new PersonInformation("Himanshu", "Baghel", "MP Nagar", "Madhya Pradesh", "Bhopal", "741001", "7134329292");
-        PersonInformation personInformation2 = new PersonInformation("Abhishek", "Baghel", "Vijay Nagar", "Madhya Pradesh", "Indore", "899091", "7134329292");
-        PersonInformation personInformation3 = new PersonInformation("Manas", "Parihar", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
+        PersonInformation personInformation1 = new PersonInformation
+                ("Himanshu", "Baghel", "MP Nagar", "Madhya Pradesh", "Bhopal", "741001", "7134329292");
+        PersonInformation personInformation2 = new PersonInformation
+                ("Abhishek", "Baghel", "Vijay Nagar", "Madhya Pradesh", "Indore", "899091", "7134329292");
+        PersonInformation personInformation3 = new PersonInformation
+                ("Manas", "Parihar", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
 
         addressBookControllerImp.addPersonInformation(personInformation1, filePath);
         addressBookControllerImp.addPersonInformation(personInformation2, filePath);
@@ -152,10 +160,21 @@ public class AddressBookTest {
             ArrayList<PersonInformation> data = objectMapper.
                     readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                     });
-            boolean isFileSaved  = addressBookControllerImp.saveAddressBook(filePath,data);
+            boolean isFileSaved = addressBookControllerImp.saveAddressBook(filePath, data);
             Assert.assertTrue(isFileSaved);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenPersonInformation_whenSaveAsAddressBook_shouldReturnTrue() {
+        String filePath = "./src/main/resources/Bhopal.json";
+        PersonInformation personInformation = new PersonInformation
+                ("Manas", "Parihar", "Indrapuri", "Madhya Pradesh", "Bhopal", "632311", "7134329292");
+        addressBookControllerImp.addPersonInformation(personInformation, filePath);
+        boolean isSaveAs = addressBookControllerImp.saveAsAddressBook(filePath, personInformation);
+        Assert.assertTrue(isSaveAs);
+    }
+
 }
