@@ -113,31 +113,49 @@ public class AddressBookTest {
     @Test
     public void givenPersonInformation_whenCreateNewAddressBook_shouldReturnTrue() {
         String addressBookName = "Abhitanshu";
-        boolean isFileCreated = addressBookControllerImp.createNewAddressBook(filePath, addressBookName);
+        boolean isFileCreated = addressBookControllerImp.createNewAddressBook(addressBookName);
         Assert.assertTrue(isFileCreated);
     }
 
     @Test
     public void givenPersonInformation_whenOpenExistingAddressBook_shouldReturnTrue() {
         String addressBookName = "Abhitanshu";
-        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(filePath, addressBookName);
+        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(addressBookName);
         Assert.assertTrue(isFileExist);
     }
 
     @Test
     public void givenPersonInformation_whenAddressBookNotExisting_shouldReturnFalse() {
         String addressBookName = "Abhi";
-        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(filePath, addressBookName);
+        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(addressBookName);
         Assert.assertFalse(isFileExist);
     }
 
     @Test
     public void givenPersonInformation_whenOpenExistingAddressBook_shouldReturnTrue1() throws IOException {
-        String addressBookName = "./src/main/resources/Abhitanshu.json";
-        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(addressBookName, addressBookName);
+        String addressBookName = "Abhitanshu";
+        String filePath = "/home/abhitanshu/Desktop/Java/AddressBook/src/main/resources/Abhitanshu.json";
+        addressBookControllerImp.openExistingAddressBook(addressBookName);
         ArrayList<PersonInformation> data = objectMapper
-                .readValue(new File(addressBookName), new TypeReference<ArrayList<PersonInformation>>() {
+                .readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
                 });
-        Assert.assertEquals("Baghel",data.get(0).getLastName());
+        Assert.assertEquals("Baghel", data.get(0).getLastName());
+    }
+
+    @Test
+    public void givenPensonInformation_whenSaveAddressBook_shouldReturnTrue() {
+        try {
+            String filePath = "./src/main/resources/Shubham.json";
+            PersonInformation personInformation = new PersonInformation
+                    ("Himanshu", "Singh", "RingRoad", "Madhya Pradesh", "Jabapur", "212311", "9987345632");
+            addressBookControllerImp.addPersonInformation(personInformation, filePath);
+            ArrayList<PersonInformation> data = objectMapper.
+                    readValue(new File(filePath), new TypeReference<ArrayList<PersonInformation>>() {
+                    });
+            boolean isFileSaved  = addressBookControllerImp.saveAddressBook(filePath,data);
+            Assert.assertTrue(isFileSaved);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
