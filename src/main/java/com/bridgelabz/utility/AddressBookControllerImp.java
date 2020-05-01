@@ -112,7 +112,7 @@ public class AddressBookControllerImp implements IAddressBook {
     }
 
     @Override
-    public boolean createNewAddressBook(String filepath, String addressBookName) {
+    public boolean createNewAddressBook(String addressBookName) {
         try {
             String currentPath = "./src/main/resources/" + addressBookName + ".json";
             File newfile = new File(currentPath);
@@ -126,7 +126,7 @@ public class AddressBookControllerImp implements IAddressBook {
     }
 
     @Override
-    public boolean openExistingAddressBook(String filepath, String addressBookName) {
+    public boolean openExistingAddressBook(String addressBookName) {
         try {
             String filePath = "./src/main/resources/" + addressBookName + ".json";
             File file = new File(filePath);
@@ -134,6 +134,19 @@ public class AddressBookControllerImp implements IAddressBook {
                 ArrayList<PersonInformation> personInformations = readFileData(filePath);
                 return true;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean saveAddressBook(String filePath, ArrayList<PersonInformation> data) {
+        try {
+            if (data.isEmpty())
+                return false;
+            writeFileData(data, filePath);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
