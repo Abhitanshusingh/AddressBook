@@ -111,9 +111,33 @@ public class AddressBookTest {
     }
 
     @Test
-    public void givenPersonInformation_whenCreateNewAddressBook_shouldRetrnTrue() {
+    public void givenPersonInformation_whenCreateNewAddressBook_shouldReturnTrue() {
         String addressBookName = "Abhitanshu";
         boolean isFileCreated = addressBookControllerImp.createNewAddressBook(filePath, addressBookName);
         Assert.assertTrue(isFileCreated);
+    }
+
+    @Test
+    public void givenPersonInformation_whenOpenExistingAddressBook_shouldReturnTrue() {
+        String addressBookName = "Abhitanshu";
+        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(filePath, addressBookName);
+        Assert.assertTrue(isFileExist);
+    }
+
+    @Test
+    public void givenPersonInformation_whenAddressBookNotExisting_shouldReturnFalse() {
+        String addressBookName = "Abhi";
+        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(filePath, addressBookName);
+        Assert.assertFalse(isFileExist);
+    }
+
+    @Test
+    public void givenPersonInformation_whenOpenExistingAddressBook_shouldReturnTrue1() throws IOException {
+        String addressBookName = "./src/main/resources/Abhitanshu.json";
+        boolean isFileExist = addressBookControllerImp.openExistingAddressBook(addressBookName, addressBookName);
+        ArrayList<PersonInformation> data = objectMapper
+                .readValue(new File(addressBookName), new TypeReference<ArrayList<PersonInformation>>() {
+                });
+        Assert.assertEquals("Baghel",data.get(0).getLastName());
     }
 }
