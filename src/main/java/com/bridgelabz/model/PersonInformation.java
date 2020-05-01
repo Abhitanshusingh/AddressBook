@@ -1,7 +1,5 @@
 package com.bridgelabz.model;
 
-import java.security.PrivateKey;
-
 public class PersonInformation {
     private String firstName;
     private String lastName;
@@ -16,8 +14,9 @@ public class PersonInformation {
 
     public PersonInformation(String firstName, String lastName, String address,
                              String state, String city, String zip, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+
+        this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+        this.lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
         this.address = address;
         this.city = city;
         this.state = state;
