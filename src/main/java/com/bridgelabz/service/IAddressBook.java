@@ -16,4 +16,6 @@ public interface IAddressBook {
     public boolean printPersonEntriesData(String filePath);
 
     public boolean createNewAddressBook(String filepath, String addressBookName);
+
+    public boolean openExistingAddressBook(String filepath, String addressBookName);
 }
