@@ -1,5 +1,5 @@
 import com.bridgelabz.model.PersonInformation;
-import com.bridgelabz.service.AddressBookControllerImp;
+import com.bridgelabz.utility.AddressBookControllerImp;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Assert;
@@ -108,5 +108,12 @@ public class AddressBookTest {
     public void givenPersonInformation_whenPrintEntriesData_shouldReturnTrue() {
         boolean isPrinted = addressBookControllerImp.printPersonEntriesData(filePath);
         Assert.assertTrue(isPrinted);
+    }
+
+    @Test
+    public void givenPersonInformation_whenCreateNewAddressBook_shouldRetrnTrue() {
+        String addressBookName = "Abhitanshu";
+        boolean isFileCreated = addressBookControllerImp.createNewAddressBook(filePath, addressBookName);
+        Assert.assertTrue(isFileCreated);
     }
 }
