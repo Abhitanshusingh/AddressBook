@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "Aayush",
+    "lastName": "Sahu",
+    "address": "Jaya Nagar",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "765051",
+    "phoneNumber": "9394958568"
+  },
+  {
+    "firstName": "Bhanu",
+    "lastName": "Baba",
+    "address": "BTM 2nd stage",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "746061",
+    "phoneNumber": "7134329292"
+  },
+  {
+    "firstName": "Modi",
+    "lastName": "Baba",
+    "address": "BTM 1nd stage",
+    "city": "Karnataka",
+    "state": "Bangalore",
+    "zip": "707121",
+    "phoneNumber": "9494938403"
+  }
+]
